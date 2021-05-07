@@ -14,77 +14,10 @@ import (
 	apiserverconfig "k8s.io/component-base/config/v1alpha1"
 )
 
-type Kube2Cons struct {
-	v1.TypeMeta
-	StorageProviders []string
-	PgDataBase       string
-	PgUser           string
-	PgPassword       string
-	EnableProfiling  bool
-	PgHost           string
-	PgPort           int
-	EsHost           []string
-	EsUser           string
-	EsPassword       string
-	DbConfigFile     string
-	Address          string
-	Port             int
-	// contentType is contentType of requests sent to apiserver.
-	ContentType string
-	// kubeAPIQPS is the QPS to use while talking with kubernetes apiserver.
-	KubeAPIQPS float32
-	// kubeAPIBurst is the burst to use while talking with kubernetes apiserver.
-	KubeAPIBurst int32
-	// minResyncPeriod is the resync period in reflectors; will be random between
-	// minResyncPeriod and 2*minResyncPeriod.
-	MinResyncPeriod v1.Duration
-	// serviceAccountKeyFile is the filename containing a PEM-encoded private RSA key
-	// used to sign service account tokens.
-	ServiceAccountKeyFile string
-	// useServiceAccountCredentials indicates whether controllers should be run with
-	// individual service account credentials.
-	UseServiceAccountCredentials bool
-	// leaderElection defines the configuration of leader election client.
-	LeaderElection apiserverconfig.LeaderElectionConfiguration
-	// rootCAFile is the root certificate authority will be included in service
-	// account's token secret. This must be a valid PEM-encoded CA bundle.
-	RootCAFile string
-	// concurrentSATokenSyncs is the number of service account token syncing operations
-	// that will be done concurrently.
-	ConcurrentSATokenSyncs int32
-	// How long to wait between starting controller managers
-	ControllerStartInterval v1.Duration
-	Controllers             []string
-	//API GVK blacklist. A comma separated API group version kind
-	APIGVKBlackList []string
-
-	//API sub resources blacklist. A comma separated API sub resources list
-	APIBlackListSubResources []string
-
-	PurgeFrequency time.Duration
-	PurgeLimit     time.Duration
-	SlackChannel   string
-	ProxyAddr      string
-	EnableProxy    bool
-	TableList      []string
-
-	FullSyncFrequency     time.Duration
-	BulkPostgresThreshold int
-	ApiServerType         string
-	EnableMainControllers bool
-	EnableCrdControllers  bool
-	ForHistory            bool
-	Usage                 string
-}
-
 type KubePgServer struct {
 	Kube2Cons
 	Master            string
 	Kubeconfig        string
-	TMKubeconfig      string
-	TessnetKubeconfig string
-	FedKubeconfig     string
-	CmsClientConfig   string
 }
 
 type Controller struct {
